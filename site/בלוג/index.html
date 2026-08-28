@@ -1,0 +1,1092 @@
+<!doctype html>
+<html dir="rtl" lang="he-IL">
+<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",e=>{this.persisted=e.persisted}),window.addEventListener("DOMContentLoaded",()=>{this._preconnect3rdParties()}),this.delayedScripts={normal:[],async:[],defer:[]},this.trash=[],this.allJQueries=[]}_addUserInteractionListener(e){if(document.hidden){e._triggerListener();return}this.triggerEvents.forEach(t=>window.addEventListener(t,e.userEventHandler,{passive:!0})),window.addEventListener("touchstart",e.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",e.touchStartHandler),document.addEventListener("visibilitychange",e.userEventHandler)}_removeUserInteractionListener(){this.triggerEvents.forEach(e=>window.removeEventListener(e,this.userEventHandler,{passive:!0})),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(e){"HTML"!==e.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),e.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"onclick","rocket-onclick"),this._pendingClickStarted())}_onTouchMove(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this._pendingClickFinished()}_onTouchEnd(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(e){e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this.interceptedClicks.push(e),e.preventDefault(),e.stopPropagation(),e.stopImmediatePropagation(),this._pendingClickFinished()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach(e=>{e.target.dispatchEvent(new MouseEvent("click",{view:e.view,bubbles:!0,cancelable:!0}))})}_waitForPendingClicks(){return new Promise(e=>{this._isClickPending?this._pendingClickFinished=e:e()})}_pendingClickStarted(){this._isClickPending=!0}_pendingClickFinished(){this._isClickPending=!1}_renameDOMAttribute(e,t,i){e.hasAttribute&&e.hasAttribute(t)&&(event.target.setAttribute(i,event.target.getAttribute(t)),event.target.removeAttribute(t))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let e=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(t=>{if(t.hasAttribute("src")){let i=new URL(t.src).origin;i!==location.origin&&e.push({src:i,crossOrigin:t.crossOrigin||"module"===t.getAttribute("data-rocket-type")})}}),e=[...new Map(e.map(e=>[JSON.stringify(e),e])).values()],this._batchInjectResourceHints(e,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(this),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(e){console.error(e)}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._waitForPendingClicks().then(()=>{this._replayClicks()}),this._emptyTrash()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(e=>{e.hasAttribute("data-rocket-src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)})}async _transformScript(e){return await this._littleBreath(),new Promise(t=>{function i(){e.setAttribute("data-rocket-status","executed"),t()}function r(){e.setAttribute("data-rocket-status","failed"),t()}try{let n=e.getAttribute("data-rocket-type"),s=e.getAttribute("data-rocket-src");if(n?(e.type=n,e.removeAttribute("data-rocket-type")):e.removeAttribute("type"),e.addEventListener("load",i),e.addEventListener("error",r),s)e.src=s,e.removeAttribute("data-rocket-src");else if(navigator.userAgent.indexOf("Firefox/")>0){var a=document.createElement("script");[...e.attributes].forEach(e=>{"type"!==e.nodeName&&a.setAttribute("data-rocket-type"===e.nodeName?"type":e.nodeName,e.nodeValue)}),a.text=e.text,e.parentNode.replaceChild(a,e),i()}else e.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(e.text)))}catch(o){r()}})}async _loadScriptsFromList(e){let t=e.shift();return t&&t.isConnected?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(e,t){var i=document.createDocumentFragment();e.forEach(e=>{let r=e.getAttribute&&e.getAttribute("data-rocket-src")||e.src;if(r){let n=document.createElement("link");n.href=r,n.rel=t,"preconnect"!==t&&(n.as="script"),e.getAttribute&&"module"===e.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),e.crossOrigin&&(n.crossOrigin=e.crossOrigin),e.integrity&&(n.integrity=e.integrity),i.appendChild(n),this.trash.push(n)}}),document.head.appendChild(i)}_delayEventListeners(e){let t={};function i(e,i){!function e(i){!t[i]&&(t[i]={originalFunctions:{add:i.addEventListener,remove:i.removeEventListener},eventsToRewrite:[]},i.addEventListener=function(){arguments[0]=r(arguments[0]),t[i].originalFunctions.add.apply(i,arguments)},i.removeEventListener=function(){arguments[0]=r(arguments[0]),t[i].originalFunctions.remove.apply(i,arguments)});function r(e){return t[i].eventsToRewrite.indexOf(e)>=0?"rocket-"+e:e}}(e),t[e].eventsToRewrite.push(i)}function r(e,t){let i=e[t];Object.defineProperty(e,t,{get:()=>i||function(){},set(r){e["rocket"+t]=i=r}})}i(document,"DOMContentLoaded"),i(window,"DOMContentLoaded"),i(window,"load"),i(window,"pageshow"),i(document,"readystatechange"),r(document,"onreadystatechange"),r(window,"onload"),r(window,"onpageshow")}_delayJQueryReady(e){let t;function i(i){if(i&&i.fn&&!e.allJQueries.includes(i)){i.fn.ready=i.fn.init.prototype.ready=function(t){return e.domReadyFired?t.bind(document)(i):document.addEventListener("rocket-DOMContentLoaded",()=>t.bind(document)(i)),i([])};let r=i.fn.on;i.fn.on=i.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map(e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]})}return r.apply(this,arguments),this},e.allJQueries.push(i)}t=i}i(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>t,set(e){i(e)}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach(e=>e(window).trigger("rocket-jquery-load")),await this._littleBreath();let e=new Event("rocket-pageshow");e.persisted=this.persisted,window.dispatchEvent(e),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){let e=new Map;document.write=document.writeln=function(t){let i=document.currentScript;i||console.error("WPRocket unable to document.write this: "+t);let r=document.createRange(),n=i.parentElement,s=e.get(i);void 0===s&&(s=i.nextSibling,e.set(i,s));let a=document.createDocumentFragment();r.setStart(a,0),a.appendChild(r.createContextualFragment(t)),n.insertBefore(a,s)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise(e=>setTimeout(e)):new Promise(e=>requestAnimationFrame(e))}_emptyTrash(){this.trash.forEach(e=>e.remove())}static run(){let e=new RocketLazyLoadScripts;e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v24.8.1 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>בלוג - עוצמה פתרונות פיננסיים</title><link rel="stylesheet" href="https://otzma-p.co.il/wp-content/cache/min/1/c94a815c605d3b27df3ae7e5c13cf2c3.css" media="all" data-minify="1" />
+	<link rel="canonical" href="https://otzma-p.co.il/בלוג/" />
+	<link rel="next" href="https://otzma-p.co.il/%d7%91%d7%9c%d7%95%d7%92/page/2/" />
+	<meta property="og:locale" content="he_IL" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="בלוג - עוצמה פתרונות פיננסיים" />
+	<meta property="og:url" content="https://otzma-p.co.il/בלוג/" />
+	<meta property="og:site_name" content="עוצמה פתרונות פיננסיים" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":["WebPage","CollectionPage"],"@id":"https://otzma-p.co.il/%d7%91%d7%9c%d7%95%d7%92/","url":"https://otzma-p.co.il/%d7%91%d7%9c%d7%95%d7%92/","name":"בלוג - עוצמה פתרונות פיננסיים","isPartOf":{"@id":"https://otzma-p.co.il/#website"},"datePublished":"2023-08-31T16:01:14+00:00","dateModified":"2023-08-31T16:01:33+00:00","inLanguage":"he-IL"},{"@type":"WebSite","@id":"https://otzma-p.co.il/#website","url":"https://otzma-p.co.il/","name":"עוצמה פתרונות פיננסיים","description":"פתרונות פיננסים מתקדמים","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://otzma-p.co.il/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"he-IL"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<script type="rocketlazyloadscript" data-rocket-type='application/javascript'  id='pys-version-script'>console.log('PixelYourSite Free version 10.1.3');</script>
+<link rel='dns-prefetch' href='//cdn.enable.co.il' />
+<link rel="alternate" type="application/rss+xml" title="עוצמה פתרונות פיננסיים &laquo; פיד‏" href="https://otzma-p.co.il/feed/" />
+<link rel="alternate" type="application/rss+xml" title="עוצמה פתרונות פיננסיים &laquo; פיד תגובות‏" href="https://otzma-p.co.il/comments/feed/" />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-break:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style^=border-color],[style*=";border-color"],[style*="; border-color"]){border-style:solid}html :where([style^=border-top-color],[style*=";border-top-color"],[style*="; border-top-color"]){border-top-style:solid}html :where([style^=border-right-color],[style*=";border-right-color"],[style*="; border-right-color"]){border-right-style:solid}html :where([style^=border-bottom-color],[style*=";border-bottom-color"],[style*="; border-bottom-color"]){border-bottom-style:solid}html :where([style^=border-left-color],[style*=";border-left-color"],[style*="; border-left-color"]){border-left-style:solid}html :where([style^=border-width],[style*=";border-width"],[style*="; border-width"]){border-style:solid}html :where([style^=border-top-width],[style*=";border-top-width"],[style*="; border-top-width"]){border-top-style:solid}html :where([style^=border-right-width],[style*=";border-right-width"],[style*="; border-right-width"]){border-right-style:solid}html :where([style^=border-bottom-width],[style*=";border-bottom-width"],[style*="; border-bottom-width"]){border-bottom-style:solid}html :where([style^=border-left-width],[style*=";border-left-width"],[style*="; border-left-width"]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+
+
+
+
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-family--inter: "Inter", sans-serif;--wp--preset--font-family--cardo: Cardo;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}.has-inter-font-family{font-family: var(--wp--preset--font-family--inter) !important;}.has-cardo-font-family{font-family: var(--wp--preset--font-family--cardo) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+
+
+<link rel='stylesheet' id='woocommerce-smallscreen-rtl-css' href='https://otzma-p.co.il/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen-rtl.css?ver=9.7.1' media='only screen and (max-width: 768px)' />
+
+<style id="woocommerce-inline-inline-css">
+.woocommerce form .form-row .required { visibility: visible; }
+/*# sourceURL=woocommerce-inline-inline-css */
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel='stylesheet' id='elementor-post-4-css' href='https://otzma-p.co.il/wp-content/uploads/elementor/css/post-4.css?ver=1728219977' media='all' />
+
+
+
+
+<link rel='stylesheet' id='elementor-post-6649-css' href='https://otzma-p.co.il/wp-content/uploads/elementor/css/post-6649.css?ver=1728219979' media='all' />
+<link rel='stylesheet' id='elementor-post-6029-css' href='https://otzma-p.co.il/wp-content/uploads/elementor/css/post-6029.css?ver=1730281859' media='all' />
+<link rel='stylesheet' id='elementor-post-5539-css' href='https://otzma-p.co.il/wp-content/uploads/elementor/css/post-5539.css?ver=1728227793' media='all' />
+
+<style id="rocket-lazyload-inline-css">
+.rll-youtube-player{position:relative;padding-bottom:56.23%;height:0;overflow:hidden;max-width:100%;}.rll-youtube-player:focus-within{outline: 2px solid currentColor;outline-offset: 5px;}.rll-youtube-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;background:0 0}.rll-youtube-player img{bottom:0;display:block;left:0;margin:auto;max-width:100%;width:100%;position:absolute;right:0;top:0;border:none;height:auto;-webkit-transition:.4s all;-moz-transition:.4s all;transition:.4s all}.rll-youtube-player img:hover{-webkit-filter:brightness(75%)}.rll-youtube-player .play{height:100%;width:100%;left:0;top:0;position:absolute;background:url(https://otzma-p.co.il/wp-content/plugins/wp-rocket/assets/img/youtube.png) no-repeat center;background-color: transparent !important;cursor:pointer;border:none;}
+/*# sourceURL=rocket-lazyload-inline-css */
+</style>
+
+
+
+
+
+
+
+<script type="rocketlazyloadscript" id="jquery-core-js" data-rocket-src="https://otzma-p.co.il/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"></script>
+<script type="rocketlazyloadscript" id="jquery-migrate-js" data-rocket-src="https://otzma-p.co.il/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"></script>
+<script type="rocketlazyloadscript" data-wp-strategy="defer" defer id="jquery-blockui-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.7.0-wc.9.7.1"></script>
+<script type="rocketlazyloadscript" data-wp-strategy="defer" defer id="js-cookie-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4-wc.9.7.1"></script>
+<script id="woocommerce-js-extra">
+var woocommerce_params = {"ajax_url":"/wp-admin/admin-ajax.php","wc_ajax_url":"/?wc-ajax=%%endpoint%%","i18n_password_show":"\u05dc\u05d4\u05e6\u05d9\u05d2 \u05e1\u05d9\u05e1\u05de\u05d4","i18n_password_hide":"\u05dc\u05d4\u05e1\u05ea\u05d9\u05e8 \u05e1\u05d9\u05e1\u05de\u05d4"};
+//# sourceURL=woocommerce-js-extra
+</script>
+<script type="rocketlazyloadscript" data-wp-strategy="defer" defer id="woocommerce-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=9.7.1"></script>
+<script type="rocketlazyloadscript" id="font-awesome-4-shim-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.min.js?ver=3.28.3"></script>
+<script type="rocketlazyloadscript" id="jquery-bind-first-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/pixelyoursite/dist/scripts/jquery.bind-first-0.2.3.min.js?ver=7.1"></script>
+<script type="rocketlazyloadscript" id="js-cookie-pys-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/pixelyoursite/dist/scripts/js.cookie-2.1.3.min.js?ver=2.1.3"></script>
+<script type="rocketlazyloadscript" id="js-tld-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/pixelyoursite/dist/scripts/tld.min.js?ver=2.3.1"></script>
+<script id="pys-js-extra">
+var pysOptions = {"staticEvents":{"facebook":{"init_event":[{"delay":0,"type":"static","ajaxFire":false,"name":"PageView","pixelIds":["1951133295239804"],"eventID":"439b6991-7d77-4533-8218-4049e6a5d7f7","params":{"post_category":"Uncategorized","page_title":"\u05e2\u05d5\u05e6\u05de\u05d4 \u05e4\u05ea\u05e8\u05d5\u05e0\u05d5\u05ea \u05e4\u05d9\u05e0\u05e0\u05e1\u05d9\u05d9\u05dd","post_type":"page","plugin":"PixelYourSite","user_role":"guest","event_url":"otzma-p.co.il/%d7%91%d7%9c%d7%95%d7%92/"},"e_id":"init_event","ids":[],"hasTimeWindow":false,"timeWindow":0,"woo_order":"","edd_order":""}]}},"dynamicEvents":[],"triggerEvents":[],"triggerEventTypes":[],"facebook":{"pixelIds":["1951133295239804"],"advancedMatching":[],"advancedMatchingEnabled":false,"removeMetadata":false,"contentParams":{"post_type":"page","post_id":null,"content_name":"\u05e2\u05d5\u05e6\u05de\u05d4 \u05e4\u05ea\u05e8\u05d5\u05e0\u05d5\u05ea \u05e4\u05d9\u05e0\u05e0\u05e1\u05d9\u05d9\u05dd"},"commentEventEnabled":true,"wooVariableAsSimple":false,"downloadEnabled":true,"formEventEnabled":true,"serverApiEnabled":false,"wooCRSendFromServer":false,"send_external_id":null,"enabled_medical":false,"do_not_track_medical_param":["event_url","post_title","page_title","landing_page","content_name","categories","category_name","tags"],"meta_ldu":false},"debug":"","siteUrl":"https://otzma-p.co.il","ajaxUrl":"https://otzma-p.co.il/wp-admin/admin-ajax.php","ajax_event":"b5fae79182","enable_remove_download_url_param":"1","cookie_duration":"7","last_visit_duration":"60","enable_success_send_form":"","ajaxForServerEvent":"1","ajaxForServerStaticEvent":"1","send_external_id":"1","external_id_expire":"180","track_cookie_for_subdomains":"1","google_consent_mode":"1","gdpr":{"ajax_enabled":false,"all_disabled_by_api":false,"facebook_disabled_by_api":false,"analytics_disabled_by_api":false,"google_ads_disabled_by_api":false,"pinterest_disabled_by_api":false,"bing_disabled_by_api":false,"externalID_disabled_by_api":false,"facebook_prior_consent_enabled":true,"analytics_prior_consent_enabled":true,"google_ads_prior_consent_enabled":null,"pinterest_prior_consent_enabled":true,"bing_prior_consent_enabled":true,"cookiebot_integration_enabled":false,"cookiebot_facebook_consent_category":"marketing","cookiebot_analytics_consent_category":"statistics","cookiebot_tiktok_consent_category":"marketing","cookiebot_google_ads_consent_category":null,"cookiebot_pinterest_consent_category":"marketing","cookiebot_bing_consent_category":"marketing","consent_magic_integration_enabled":false,"real_cookie_banner_integration_enabled":false,"cookie_notice_integration_enabled":false,"cookie_law_info_integration_enabled":false,"analytics_storage":{"enabled":true,"value":"granted","filter":false},"ad_storage":{"enabled":true,"value":"granted","filter":false},"ad_user_data":{"enabled":true,"value":"granted","filter":false},"ad_personalization":{"enabled":true,"value":"granted","filter":false}},"cookie":{"disabled_all_cookie":false,"disabled_start_session_cookie":false,"disabled_advanced_form_data_cookie":false,"disabled_landing_page_cookie":false,"disabled_first_visit_cookie":false,"disabled_trafficsource_cookie":false,"disabled_utmTerms_cookie":false,"disabled_utmId_cookie":false},"tracking_analytics":{"TrafficSource":"www.google.com","TrafficLanding":"undefined","TrafficUtms":[],"TrafficUtmsId":[]},"GATags":{"ga_datalayer_type":"default","ga_datalayer_name":"dataLayerPYS"},"woo":{"enabled":true,"enabled_save_data_to_orders":true,"addToCartOnButtonEnabled":true,"addToCartOnButtonValueEnabled":true,"addToCartOnButtonValueOption":"price","singleProductId":null,"removeFromCartSelector":"form.woocommerce-cart-form .remove","addToCartCatchMethod":"add_cart_hook","is_order_received_page":false,"containOrderId":false},"edd":{"enabled":false},"cache_bypass":"1787347992"};
+//# sourceURL=pys-js-extra
+</script>
+<script type="rocketlazyloadscript" data-minify="1" id="pys-js" data-rocket-src="https://otzma-p.co.il/wp-content/cache/min/1/wp-content/plugins/pixelyoursite/dist/scripts/public.js?ver=1787347992"></script>
+<link rel="https://api.w.org/" href="https://otzma-p.co.il/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://otzma-p.co.il/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 7.1" />
+<meta name="generator" content="WooCommerce 9.7.1" />
+            <style>
+                .wdgk_donation_content a.button.wdgk_add_donation { background-color: #289dcc !important; } .wdgk_donation_content a.button.wdgk_add_donation { color: #FFFFFF !important; }            </style>
+	<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+	<meta name="generator" content="Elementor 3.28.3; features: e_local_google_fonts; settings: css_print_method-external, google_font-enabled, font_display-auto">
+<!-- Google Tag Manager -->
+<script type="rocketlazyloadscript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5M9NVQV');</script>
+<!-- End Google Tag Manager -->
+<!-- Google Tag Manager -->
+<script type="rocketlazyloadscript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P7FDSSZR');</script>
+<!-- End Google Tag Manager -->
+<!-- facebook-domain-verification -->
+<meta name="facebook-domain-verification" content="nrt429dwxa5hrev3ozbb4qmpstaiqr" />
+
+<!-- Meta Pixel Code -->
+<script type="rocketlazyloadscript">
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1951133295239804');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1951133295239804&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+
+
+<!-- search-console-verification -->
+<meta name="google-site-verification" content="wM-DS_SayY4CRhQDsW7cuoGPgmseTjc71IdjwypBAp0" />
+<script type="rocketlazyloadscript">
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+
+  ttq.load('CLSTSR3C77U0797C6250');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+<!-- Google tag (gtag.js) -->
+<script type="rocketlazyloadscript" async data-rocket-src="https://www.googletagmanager.com/gtag/js?id=AW-10997849435">
+</script>
+<script type="rocketlazyloadscript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-10997849435');
+</script>
+<!-- Google tag (gtag.js) -->
+<script type="rocketlazyloadscript" async data-rocket-src="https://www.googletagmanager.com/gtag/js?id=G-GF0YYJVWD5"></script>
+<script type="rocketlazyloadscript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GF0YYJVWD5');
+</script>
+<script type="rocketlazyloadscript" data-minify="1" async  id="msq_pixel_id" data-rocket-type="text/javascript" data-rocket-src="https://otzma-p.co.il/wp-content/cache/min/1/maskyoo-cdn/msq_pixel_2023.js?ver=1787334853"></script>
+
+			<style>
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+					background-image: none !important;
+				}
+				@media screen and (max-height: 1024px) {
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+				@media screen and (max-height: 640px) {
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+			</style>
+			<style class="wp-fonts-local">
+@font-face{font-family:Inter;font-style:normal;font-weight:300 900;font-display:fallback;src:url('https://otzma-p.co.il/wp-content/plugins/woocommerce/assets/fonts/Inter-VariableFont_slnt,wght.woff2') format('woff2');font-stretch:normal;}
+@font-face{font-family:Cardo;font-style:normal;font-weight:400;font-display:fallback;src:url('https://otzma-p.co.il/wp-content/plugins/woocommerce/assets/fonts/cardo_normal_400.woff2') format('woff2');}
+</style>
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript>
+
+
+
+</head>
+<body class="rtl blog wp-theme-hello-elementor theme-hello-elementor woocommerce-no-js elementor-page-5539 elementor-default elementor-template-full-width elementor-kit-4">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5M9NVQV"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P7FDSSZR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<a class="skip-link screen-reader-text" href="#content">דלג לתוכן</a>
+
+		<div data-elementor-type="header" data-elementor-id="6649" class="elementor elementor-6649 elementor-location-header" data-elementor-post-type="elementor_library">
+			<div class="elementor-element elementor-element-dd8d3a3 stickyheadersection e-con-full e-flex e-con e-parent" data-id="dd8d3a3" data-element_type="container" data-settings="{&quot;jet_parallax_layout_list&quot;:[{&quot;_id&quot;:&quot;1c535ec&quot;,&quot;jet_parallax_layout_image&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;jet_parallax_layout_image_tablet&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;jet_parallax_layout_image_mobile&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;jet_parallax_layout_speed&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:50,&quot;sizes&quot;:[]},&quot;jet_parallax_layout_type&quot;:&quot;scroll&quot;,&quot;jet_parallax_layout_direction&quot;:null,&quot;jet_parallax_layout_fx_direction&quot;:null,&quot;jet_parallax_layout_z_index&quot;:&quot;&quot;,&quot;jet_parallax_layout_bg_x&quot;:50,&quot;jet_parallax_layout_bg_x_tablet&quot;:&quot;&quot;,&quot;jet_parallax_layout_bg_x_mobile&quot;:&quot;&quot;,&quot;jet_parallax_layout_bg_y&quot;:50,&quot;jet_parallax_layout_bg_y_tablet&quot;:&quot;&quot;,&quot;jet_parallax_layout_bg_y_mobile&quot;:&quot;&quot;,&quot;jet_parallax_layout_bg_size&quot;:&quot;auto&quot;,&quot;jet_parallax_layout_bg_size_tablet&quot;:&quot;&quot;,&quot;jet_parallax_layout_bg_size_mobile&quot;:&quot;&quot;,&quot;jet_parallax_layout_animation_prop&quot;:&quot;transform&quot;,&quot;jet_parallax_layout_on&quot;:[&quot;desktop&quot;,&quot;tablet&quot;]}],&quot;sticky&quot;:&quot;top&quot;,&quot;sticky_effects_offset&quot;:30,&quot;sticky_effects_offset_tablet&quot;:0,&quot;sticky_effects_offset_mobile&quot;:60,&quot;sticky_on&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;],&quot;sticky_offset&quot;:0,&quot;sticky_anchor_link_offset&quot;:0}">
+		<div class="elementor-element elementor-element-71df86b e-con-full e-flex e-con e-child" data-id="71df86b" data-element_type="container" data-settings="{&quot;jet_parallax_layout_list&quot;:[]}">
+				<div class="elementor-element elementor-element-3aae1b2 img1 elementor-widget elementor-widget-image" data-id="3aae1b2" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+																<a href="https://otzma-p.co.il">
+							<img width="512" height="114" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20114'%3E%3C/svg%3E" class="attachment-full size-full wp-image-3894" alt="" data-lazy-srcset="https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-04-1.png 512w, https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-04-1-300x67.png 300w" data-lazy-sizes="(max-width: 512px) 100vw, 512px" data-lazy-src="https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-04-1.png" /><noscript><img width="512" height="114" src="https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-04-1.png" class="attachment-full size-full wp-image-3894" alt="" srcset="https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-04-1.png 512w, https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-04-1-300x67.png 300w" sizes="(max-width: 512px) 100vw, 512px" /></noscript>								</a>
+															</div>
+				</div>
+				<div class="elementor-element elementor-element-4b8c880 img2 elementor-widget elementor-widget-image" data-id="4b8c880" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+																<a href="https://otzma-p.co.il">
+							<img width="512" height="114" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20114'%3E%3C/svg%3E" class="attachment-full size-full wp-image-3893" alt="" data-lazy-srcset="https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-02-3.png 512w, https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-02-3-300x67.png 300w" data-lazy-sizes="(max-width: 512px) 100vw, 512px" data-lazy-src="https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-02-3.png" /><noscript><img width="512" height="114" src="https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-02-3.png" class="attachment-full size-full wp-image-3893" alt="" srcset="https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-02-3.png 512w, https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-02-3-300x67.png 300w" sizes="(max-width: 512px) 100vw, 512px" /></noscript>								</a>
+															</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-0d8750f e-con-full e-flex e-con e-child" data-id="0d8750f" data-element_type="container" data-settings="{&quot;jet_parallax_layout_list&quot;:[]}">
+				<div class="elementor-element elementor-element-cdb2e51 elementor-nav-menu--stretch elementor-hidden-mobile elementor-nav-menu--dropdown-tablet elementor-nav-menu__text-align-aside elementor-nav-menu--toggle elementor-nav-menu--burger elementor-widget elementor-widget-nav-menu" data-id="cdb2e51" data-element_type="widget" data-settings="{&quot;full_width&quot;:&quot;stretch&quot;,&quot;layout&quot;:&quot;horizontal&quot;,&quot;submenu_icon&quot;:{&quot;value&quot;:&quot;&lt;i class=\&quot;fas fa-caret-down\&quot;&gt;&lt;\/i&gt;&quot;,&quot;library&quot;:&quot;fa-solid&quot;},&quot;toggle&quot;:&quot;burger&quot;}" data-widget_type="nav-menu.default">
+				<div class="elementor-widget-container">
+								<nav aria-label="תפריט" class="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-horizontal e--pointer-text e--animation-float">
+				<ul id="menu-1-cdb2e51" class="elementor-nav-menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-6133"><a href="https://otzma-p.co.il/" class="elementor-item">ראשי</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6951"><a href="https://otzma-p.co.il/%d7%90%d7%95%d7%93%d7%95%d7%aa/" class="elementor-item">אודות</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children menu-item-6136"><a href="https://otzma-p.co.il/" class="elementor-item">פתרונות מימון לעסקים</a>
+<ul class="sub-menu elementor-nav-menu--dropdown">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6770"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%91%d7%a2%d7%a8%d7%91%d7%95%d7%aa-%d7%94%d7%9e%d7%93%d7%99%d7%a0%d7%94/" class="elementor-sub-item">הלוואות בערבות המדינה</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6143"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/" class="elementor-sub-item">הלוואות לעסקים</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6142"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%a4%d7%99%d7%9c%d7%a0%d7%aa%d7%a8%d7%95%d7%a4%d7%99%d7%95%d7%aa-%d7%a7%d7%a8%d7%a0%d7%95%d7%aa/" class="elementor-sub-item">הלוואות פילנתרופיות (קרנות)</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6140"><a href="https://otzma-p.co.il/%d7%94%d7%97%d7%96%d7%a8%d7%99-%d7%9e%d7%a1-2-2/" class="elementor-item">החזרי מס</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6139"><a href="https://otzma-p.co.il/%d7%a9%d7%90%d7%9c%d7%95%d7%aa-%d7%aa%d7%a9%d7%95%d7%91%d7%95%d7%aa/" class="elementor-item">שאלות תשובות</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-4356 current_page_item current_page_parent menu-item-6145"><a href="https://otzma-p.co.il/%d7%91%d7%9c%d7%95%d7%92/" aria-current="page" class="elementor-item elementor-item-active">בלוג</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7069"><a href="https://otzma-p.co.il/%d7%93%d7%a8%d7%95%d7%a9%d7%99%d7%9d/" class="elementor-item">דרושים</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7068"><a href="https://otzma-p.co.il/%d7%94%d7%a1%d7%93%d7%a8%d7%99-%d7%a0%d7%92%d7%99%d7%a9%d7%95%d7%aa/" class="elementor-item">הסדרי נגישות</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6141"><a href="https://otzma-p.co.il/%d7%a6%d7%a8%d7%95-%d7%a7%d7%a9%d7%a8/" class="elementor-item">צרו קשר</a></li>
+</ul>			</nav>
+					<div class="elementor-menu-toggle" role="button" tabindex="0" aria-label="כפתור פתיחת תפריט" aria-expanded="false">
+			<i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--open eicon-menu-bar"></i><i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--close eicon-close"></i>		</div>
+					<nav class="elementor-nav-menu--dropdown elementor-nav-menu__container" aria-hidden="true">
+				<ul id="menu-2-cdb2e51" class="elementor-nav-menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-6133"><a href="https://otzma-p.co.il/" class="elementor-item" tabindex="-1">ראשי</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6951"><a href="https://otzma-p.co.il/%d7%90%d7%95%d7%93%d7%95%d7%aa/" class="elementor-item" tabindex="-1">אודות</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children menu-item-6136"><a href="https://otzma-p.co.il/" class="elementor-item" tabindex="-1">פתרונות מימון לעסקים</a>
+<ul class="sub-menu elementor-nav-menu--dropdown">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6770"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%91%d7%a2%d7%a8%d7%91%d7%95%d7%aa-%d7%94%d7%9e%d7%93%d7%99%d7%a0%d7%94/" class="elementor-sub-item" tabindex="-1">הלוואות בערבות המדינה</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6143"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/" class="elementor-sub-item" tabindex="-1">הלוואות לעסקים</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6142"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%a4%d7%99%d7%9c%d7%a0%d7%aa%d7%a8%d7%95%d7%a4%d7%99%d7%95%d7%aa-%d7%a7%d7%a8%d7%a0%d7%95%d7%aa/" class="elementor-sub-item" tabindex="-1">הלוואות פילנתרופיות (קרנות)</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6140"><a href="https://otzma-p.co.il/%d7%94%d7%97%d7%96%d7%a8%d7%99-%d7%9e%d7%a1-2-2/" class="elementor-item" tabindex="-1">החזרי מס</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6139"><a href="https://otzma-p.co.il/%d7%a9%d7%90%d7%9c%d7%95%d7%aa-%d7%aa%d7%a9%d7%95%d7%91%d7%95%d7%aa/" class="elementor-item" tabindex="-1">שאלות תשובות</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-4356 current_page_item current_page_parent menu-item-6145"><a href="https://otzma-p.co.il/%d7%91%d7%9c%d7%95%d7%92/" aria-current="page" class="elementor-item elementor-item-active" tabindex="-1">בלוג</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7069"><a href="https://otzma-p.co.il/%d7%93%d7%a8%d7%95%d7%a9%d7%99%d7%9d/" class="elementor-item" tabindex="-1">דרושים</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7068"><a href="https://otzma-p.co.il/%d7%94%d7%a1%d7%93%d7%a8%d7%99-%d7%a0%d7%92%d7%99%d7%a9%d7%95%d7%aa/" class="elementor-item" tabindex="-1">הסדרי נגישות</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6141"><a href="https://otzma-p.co.il/%d7%a6%d7%a8%d7%95-%d7%a7%d7%a9%d7%a8/" class="elementor-item" tabindex="-1">צרו קשר</a></li>
+</ul>			</nav>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-5abf9d3 elementor-icon-list--layout-inline elementor-widget__width-auto elementor-align-left elementor-mobile-align-center elementor-hidden-desktop elementor-hidden-tablet elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="5abf9d3" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items elementor-inline-items">
+							<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="https://www.facebook.com/profile.php?id=100089868395572&#038;mibextid=LQQJ4d" target="_blank">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fab fa-facebook-f"></i>						</span>
+										<span class="elementor-icon-list-text"></span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="https://www.instagram.com/otzma_finance/?igshid=MzRlODBiNWFlZA%3D%3D" target="_blank">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fab fa-instagram"></i>						</span>
+										<span class="elementor-icon-list-text"></span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="https://api.whatsapp.com/send?phone=97246455557" target="_blank">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fab fa-whatsapp"></i>						</span>
+										<span class="elementor-icon-list-text"></span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="tel:04-6455557  " target="_blank">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-phone-alt"></i>						</span>
+										<span class="elementor-icon-list-text"></span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-da9c3a9 e-con-full e-flex e-con e-child" data-id="da9c3a9" data-element_type="container" data-settings="{&quot;jet_parallax_layout_list&quot;:[]}">
+				<div class="elementor-element elementor-element-2c85035 elementor-icon-list--layout-inline elementor-widget__width-auto elementor-hidden-mobile elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="2c85035" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items elementor-inline-items">
+							<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="tel:04-6455557  ">
+
+											<span class="elementor-icon-list-text"><span class="fix_smartphone">04-6455557  </span></span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="tel:04-6455557  " target="_blank" rel="nofollow">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-phone-volume"></i>						</span>
+										<span class="elementor-icon-list-text"></span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-e02bfe2 elementor-nav-menu--stretch elementor-widget__width-auto elementor-hidden-desktop elementor-hidden-tablet elementor-nav-menu__align-end elementor-nav-menu--dropdown-tablet elementor-nav-menu__text-align-aside elementor-nav-menu--toggle elementor-nav-menu--burger elementor-widget elementor-widget-nav-menu" data-id="e02bfe2" data-element_type="widget" data-settings="{&quot;full_width&quot;:&quot;stretch&quot;,&quot;layout&quot;:&quot;horizontal&quot;,&quot;submenu_icon&quot;:{&quot;value&quot;:&quot;&lt;i class=\&quot;fas fa-caret-down\&quot;&gt;&lt;\/i&gt;&quot;,&quot;library&quot;:&quot;fa-solid&quot;},&quot;toggle&quot;:&quot;burger&quot;}" data-widget_type="nav-menu.default">
+				<div class="elementor-widget-container">
+								<nav aria-label="תפריט" class="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-horizontal e--pointer-text e--animation-float">
+				<ul id="menu-1-e02bfe2" class="elementor-nav-menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-6133"><a href="https://otzma-p.co.il/" class="elementor-item">ראשי</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6951"><a href="https://otzma-p.co.il/%d7%90%d7%95%d7%93%d7%95%d7%aa/" class="elementor-item">אודות</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children menu-item-6136"><a href="https://otzma-p.co.il/" class="elementor-item">פתרונות מימון לעסקים</a>
+<ul class="sub-menu elementor-nav-menu--dropdown">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6770"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%91%d7%a2%d7%a8%d7%91%d7%95%d7%aa-%d7%94%d7%9e%d7%93%d7%99%d7%a0%d7%94/" class="elementor-sub-item">הלוואות בערבות המדינה</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6143"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/" class="elementor-sub-item">הלוואות לעסקים</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6142"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%a4%d7%99%d7%9c%d7%a0%d7%aa%d7%a8%d7%95%d7%a4%d7%99%d7%95%d7%aa-%d7%a7%d7%a8%d7%a0%d7%95%d7%aa/" class="elementor-sub-item">הלוואות פילנתרופיות (קרנות)</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6140"><a href="https://otzma-p.co.il/%d7%94%d7%97%d7%96%d7%a8%d7%99-%d7%9e%d7%a1-2-2/" class="elementor-item">החזרי מס</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6139"><a href="https://otzma-p.co.il/%d7%a9%d7%90%d7%9c%d7%95%d7%aa-%d7%aa%d7%a9%d7%95%d7%91%d7%95%d7%aa/" class="elementor-item">שאלות תשובות</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-4356 current_page_item current_page_parent menu-item-6145"><a href="https://otzma-p.co.il/%d7%91%d7%9c%d7%95%d7%92/" aria-current="page" class="elementor-item elementor-item-active">בלוג</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7069"><a href="https://otzma-p.co.il/%d7%93%d7%a8%d7%95%d7%a9%d7%99%d7%9d/" class="elementor-item">דרושים</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7068"><a href="https://otzma-p.co.il/%d7%94%d7%a1%d7%93%d7%a8%d7%99-%d7%a0%d7%92%d7%99%d7%a9%d7%95%d7%aa/" class="elementor-item">הסדרי נגישות</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6141"><a href="https://otzma-p.co.il/%d7%a6%d7%a8%d7%95-%d7%a7%d7%a9%d7%a8/" class="elementor-item">צרו קשר</a></li>
+</ul>			</nav>
+					<div class="elementor-menu-toggle" role="button" tabindex="0" aria-label="כפתור פתיחת תפריט" aria-expanded="false">
+			<i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--open eicon-menu-bar"></i><i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--close eicon-close"></i>		</div>
+					<nav class="elementor-nav-menu--dropdown elementor-nav-menu__container" aria-hidden="true">
+				<ul id="menu-2-e02bfe2" class="elementor-nav-menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-6133"><a href="https://otzma-p.co.il/" class="elementor-item" tabindex="-1">ראשי</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6951"><a href="https://otzma-p.co.il/%d7%90%d7%95%d7%93%d7%95%d7%aa/" class="elementor-item" tabindex="-1">אודות</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children menu-item-6136"><a href="https://otzma-p.co.il/" class="elementor-item" tabindex="-1">פתרונות מימון לעסקים</a>
+<ul class="sub-menu elementor-nav-menu--dropdown">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6770"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%91%d7%a2%d7%a8%d7%91%d7%95%d7%aa-%d7%94%d7%9e%d7%93%d7%99%d7%a0%d7%94/" class="elementor-sub-item" tabindex="-1">הלוואות בערבות המדינה</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6143"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/" class="elementor-sub-item" tabindex="-1">הלוואות לעסקים</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6142"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%a4%d7%99%d7%9c%d7%a0%d7%aa%d7%a8%d7%95%d7%a4%d7%99%d7%95%d7%aa-%d7%a7%d7%a8%d7%a0%d7%95%d7%aa/" class="elementor-sub-item" tabindex="-1">הלוואות פילנתרופיות (קרנות)</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6140"><a href="https://otzma-p.co.il/%d7%94%d7%97%d7%96%d7%a8%d7%99-%d7%9e%d7%a1-2-2/" class="elementor-item" tabindex="-1">החזרי מס</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6139"><a href="https://otzma-p.co.il/%d7%a9%d7%90%d7%9c%d7%95%d7%aa-%d7%aa%d7%a9%d7%95%d7%91%d7%95%d7%aa/" class="elementor-item" tabindex="-1">שאלות תשובות</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-4356 current_page_item current_page_parent menu-item-6145"><a href="https://otzma-p.co.il/%d7%91%d7%9c%d7%95%d7%92/" aria-current="page" class="elementor-item elementor-item-active" tabindex="-1">בלוג</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7069"><a href="https://otzma-p.co.il/%d7%93%d7%a8%d7%95%d7%a9%d7%99%d7%9d/" class="elementor-item" tabindex="-1">דרושים</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7068"><a href="https://otzma-p.co.il/%d7%94%d7%a1%d7%93%d7%a8%d7%99-%d7%a0%d7%92%d7%99%d7%a9%d7%95%d7%aa/" class="elementor-item" tabindex="-1">הסדרי נגישות</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6141"><a href="https://otzma-p.co.il/%d7%a6%d7%a8%d7%95-%d7%a7%d7%a9%d7%a8/" class="elementor-item" tabindex="-1">צרו קשר</a></li>
+</ul>			</nav>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-f275fa7 elementor-nav-menu--stretch elementor-widget__width-auto elementor-hidden-desktop elementor-hidden-tablet elementor-hidden-mobile elementor-nav-menu--dropdown-tablet elementor-nav-menu__text-align-aside elementor-nav-menu--toggle elementor-nav-menu--burger elementor-widget elementor-widget-nav-menu" data-id="f275fa7" data-element_type="widget" data-settings="{&quot;full_width&quot;:&quot;stretch&quot;,&quot;layout&quot;:&quot;horizontal&quot;,&quot;submenu_icon&quot;:{&quot;value&quot;:&quot;&lt;i class=\&quot;fas fa-caret-down\&quot;&gt;&lt;\/i&gt;&quot;,&quot;library&quot;:&quot;fa-solid&quot;},&quot;toggle&quot;:&quot;burger&quot;}" data-widget_type="nav-menu.default">
+				<div class="elementor-widget-container">
+								<nav aria-label="תפריט" class="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-horizontal e--pointer-text e--animation-float">
+				<ul id="menu-1-f275fa7" class="elementor-nav-menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-6133"><a href="https://otzma-p.co.il/" class="elementor-item">ראשי</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6951"><a href="https://otzma-p.co.il/%d7%90%d7%95%d7%93%d7%95%d7%aa/" class="elementor-item">אודות</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children menu-item-6136"><a href="https://otzma-p.co.il/" class="elementor-item">פתרונות מימון לעסקים</a>
+<ul class="sub-menu elementor-nav-menu--dropdown">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6770"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%91%d7%a2%d7%a8%d7%91%d7%95%d7%aa-%d7%94%d7%9e%d7%93%d7%99%d7%a0%d7%94/" class="elementor-sub-item">הלוואות בערבות המדינה</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6143"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/" class="elementor-sub-item">הלוואות לעסקים</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6142"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%a4%d7%99%d7%9c%d7%a0%d7%aa%d7%a8%d7%95%d7%a4%d7%99%d7%95%d7%aa-%d7%a7%d7%a8%d7%a0%d7%95%d7%aa/" class="elementor-sub-item">הלוואות פילנתרופיות (קרנות)</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6140"><a href="https://otzma-p.co.il/%d7%94%d7%97%d7%96%d7%a8%d7%99-%d7%9e%d7%a1-2-2/" class="elementor-item">החזרי מס</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6139"><a href="https://otzma-p.co.il/%d7%a9%d7%90%d7%9c%d7%95%d7%aa-%d7%aa%d7%a9%d7%95%d7%91%d7%95%d7%aa/" class="elementor-item">שאלות תשובות</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-4356 current_page_item current_page_parent menu-item-6145"><a href="https://otzma-p.co.il/%d7%91%d7%9c%d7%95%d7%92/" aria-current="page" class="elementor-item elementor-item-active">בלוג</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7069"><a href="https://otzma-p.co.il/%d7%93%d7%a8%d7%95%d7%a9%d7%99%d7%9d/" class="elementor-item">דרושים</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7068"><a href="https://otzma-p.co.il/%d7%94%d7%a1%d7%93%d7%a8%d7%99-%d7%a0%d7%92%d7%99%d7%a9%d7%95%d7%aa/" class="elementor-item">הסדרי נגישות</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6141"><a href="https://otzma-p.co.il/%d7%a6%d7%a8%d7%95-%d7%a7%d7%a9%d7%a8/" class="elementor-item">צרו קשר</a></li>
+</ul>			</nav>
+					<div class="elementor-menu-toggle" role="button" tabindex="0" aria-label="כפתור פתיחת תפריט" aria-expanded="false">
+			<i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--open eicon-menu-bar"></i><i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--close eicon-close"></i>		</div>
+					<nav class="elementor-nav-menu--dropdown elementor-nav-menu__container" aria-hidden="true">
+				<ul id="menu-2-f275fa7" class="elementor-nav-menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-6133"><a href="https://otzma-p.co.il/" class="elementor-item" tabindex="-1">ראשי</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6951"><a href="https://otzma-p.co.il/%d7%90%d7%95%d7%93%d7%95%d7%aa/" class="elementor-item" tabindex="-1">אודות</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children menu-item-6136"><a href="https://otzma-p.co.il/" class="elementor-item" tabindex="-1">פתרונות מימון לעסקים</a>
+<ul class="sub-menu elementor-nav-menu--dropdown">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6770"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%91%d7%a2%d7%a8%d7%91%d7%95%d7%aa-%d7%94%d7%9e%d7%93%d7%99%d7%a0%d7%94/" class="elementor-sub-item" tabindex="-1">הלוואות בערבות המדינה</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6143"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/" class="elementor-sub-item" tabindex="-1">הלוואות לעסקים</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6142"><a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%a4%d7%99%d7%9c%d7%a0%d7%aa%d7%a8%d7%95%d7%a4%d7%99%d7%95%d7%aa-%d7%a7%d7%a8%d7%a0%d7%95%d7%aa/" class="elementor-sub-item" tabindex="-1">הלוואות פילנתרופיות (קרנות)</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6140"><a href="https://otzma-p.co.il/%d7%94%d7%97%d7%96%d7%a8%d7%99-%d7%9e%d7%a1-2-2/" class="elementor-item" tabindex="-1">החזרי מס</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6139"><a href="https://otzma-p.co.il/%d7%a9%d7%90%d7%9c%d7%95%d7%aa-%d7%aa%d7%a9%d7%95%d7%91%d7%95%d7%aa/" class="elementor-item" tabindex="-1">שאלות תשובות</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-4356 current_page_item current_page_parent menu-item-6145"><a href="https://otzma-p.co.il/%d7%91%d7%9c%d7%95%d7%92/" aria-current="page" class="elementor-item elementor-item-active" tabindex="-1">בלוג</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7069"><a href="https://otzma-p.co.il/%d7%93%d7%a8%d7%95%d7%a9%d7%99%d7%9d/" class="elementor-item" tabindex="-1">דרושים</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7068"><a href="https://otzma-p.co.il/%d7%94%d7%a1%d7%93%d7%a8%d7%99-%d7%a0%d7%92%d7%99%d7%a9%d7%95%d7%aa/" class="elementor-item" tabindex="-1">הסדרי נגישות</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6141"><a href="https://otzma-p.co.il/%d7%a6%d7%a8%d7%95-%d7%a7%d7%a9%d7%a8/" class="elementor-item" tabindex="-1">צרו קשר</a></li>
+</ul>			</nav>
+						</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-9a843f1 e-con-full elementor-hidden-mobile e-flex e-con e-child" data-id="9a843f1" data-element_type="container" data-settings="{&quot;jet_parallax_layout_list&quot;:[]}">
+				<div class="elementor-element elementor-element-d1b3a97 elementor-icon-list--layout-inline elementor-widget__width-auto elementor-align-left elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="d1b3a97" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items elementor-inline-items">
+							<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="https://api.whatsapp.com/send?phone=972527080655&#038;text=%D7%94%D7%99%D7%99,%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%A8%D7%A6%D7%99%D7%AA%D7%99%20%D7%9C%D7%93%D7%A2%D7%AA%20%D7%A2%D7%95%D7%93%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="nofollow">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fab fa-whatsapp"></i>						</span>
+										<span class="elementor-icon-list-text"></span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="/cdn-cgi/l/email-protection#f4bb92929d9791b49b808e9995d984da979bda9d98" target="_blank" rel="nofollow">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="far fa-envelope"></i>						</span>
+										<span class="elementor-icon-list-text"></span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="https://www.facebook.com/people/%D7%A2%D7%95%D7%A6%D7%9E%D7%94-%D7%A4%D7%AA%D7%A8%D7%95%D7%A0%D7%95%D7%AA-%D7%A4%D7%99%D7%A0%D7%A0%D7%A1%D7%99%D7%9D/100089868395572/?mibextid=LQQJ4d" target="_blank">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fab fa-facebook-f"></i>						</span>
+										<span class="elementor-icon-list-text"></span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="https://www.instagram.com/otzma_finance/?igshid=MzRlODBiNWFlZA%3D%3D" target="_blank">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fab fa-instagram"></i>						</span>
+										<span class="elementor-icon-list-text"></span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+				</div>
+				</div>
+				</div>
+				<div data-elementor-type="archive" data-elementor-id="5539" class="elementor elementor-5539 elementor-location-archive" data-elementor-post-type="elementor_library">
+			<div class="elementor-element elementor-element-deed207 e-flex e-con-boxed e-con e-parent" data-id="deed207" data-element_type="container" data-settings="{&quot;jet_parallax_layout_list&quot;:[],&quot;background_background&quot;:&quot;gradient&quot;,&quot;background_motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;shape_divider_bottom&quot;:&quot;waves&quot;,&quot;shape_divider_bottom_negative&quot;:&quot;yes&quot;,&quot;background_motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]}">
+					<div class="e-con-inner">
+				<div class="elementor-shape elementor-shape-bottom" data-negative="true">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+	<path class="elementor-shape-fill" d="M790.5,93.1c-59.3-5.3-116.8-18-192.6-50c-29.6-12.7-76.9-31-100.5-35.9c-23.6-4.9-52.6-7.8-75.5-5.3
+	c-10.2,1.1-22.6,1.4-50.1,7.4c-27.2,6.3-58.2,16.6-79.4,24.7c-41.3,15.9-94.9,21.9-134,22.6C72,58.2,0,25.8,0,25.8V100h1000V65.3
+	c0,0-51.5,19.4-106.2,25.7C839.5,97,814.1,95.2,790.5,93.1z"/>
+</svg>		</div>
+		<div class="elementor-element elementor-element-a7028ac e-con-full e-flex e-con e-parent" data-id="a7028ac" data-element_type="container" data-settings="{&quot;jet_parallax_layout_list&quot;:[]}">
+				<div class="elementor-element elementor-element-332f8dd elementor-widget elementor-widget-text-editor" data-id="332f8dd" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+									<p>מלווים אותך בכל שלב ושלב עד להשגת היעד הכספי שלך</p>								</div>
+				</div>
+				<div class="elementor-element elementor-element-0c13728 elementor-align-right elementor-widget elementor-widget-button" data-id="0c13728" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-pulse" href="#">
+						<span class="elementor-button-content-wrapper">
+									<span class="elementor-button-text">השאירו פרטים</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-39f58e0 e-con-full e-flex e-con e-parent" data-id="39f58e0" data-element_type="container" data-settings="{&quot;jet_parallax_layout_list&quot;:[],&quot;background_background&quot;:&quot;classic&quot;}">
+				<div class="elementor-element elementor-element-32f8ae0 elementor-widget elementor-widget-image" data-id="32f8ae0" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="646" height="506" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20646%20506'%3E%3C/svg%3E" class="attachment-full size-full wp-image-5289" alt="" data-lazy-srcset="https://otzma-p.co.il/wp-content/uploads/2023/09/תמונה-עמיוד-ראשי-הלוואות-פילנטרופיות-1.png 646w, https://otzma-p.co.il/wp-content/uploads/2023/09/תמונה-עמיוד-ראשי-הלוואות-פילנטרופיות-1-300x235.png 300w" data-lazy-sizes="(max-width: 646px) 100vw, 646px" data-lazy-src="https://otzma-p.co.il/wp-content/uploads/2023/09/תמונה-עמיוד-ראשי-הלוואות-פילנטרופיות-1.png" /><noscript><img width="646" height="506" src="https://otzma-p.co.il/wp-content/uploads/2023/09/תמונה-עמיוד-ראשי-הלוואות-פילנטרופיות-1.png" class="attachment-full size-full wp-image-5289" alt="" srcset="https://otzma-p.co.il/wp-content/uploads/2023/09/תמונה-עמיוד-ראשי-הלוואות-פילנטרופיות-1.png 646w, https://otzma-p.co.il/wp-content/uploads/2023/09/תמונה-עמיוד-ראשי-הלוואות-פילנטרופיות-1-300x235.png 300w" sizes="(max-width: 646px) 100vw, 646px" /></noscript>															</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-e72c973 e-flex e-con-boxed e-con e-parent" data-id="e72c973" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;jet_parallax_layout_list&quot;:[]}">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-24fe540 elementor-pagination-type-bullets elementor-arrows-position-inside elementor-pagination-position-outside elementor-widget elementor-widget-loop-carousel" data-id="24fe540" data-element_type="widget" data-settings="{&quot;template_id&quot;:&quot;5549&quot;,&quot;slides_to_scroll&quot;:&quot;3&quot;,&quot;_skin&quot;:&quot;post&quot;,&quot;slides_to_show&quot;:&quot;3&quot;,&quot;slides_to_show_tablet&quot;:&quot;2&quot;,&quot;slides_to_show_mobile&quot;:&quot;1&quot;,&quot;edit_handle_selector&quot;:&quot;.elementor-widget-container&quot;,&quot;autoplay&quot;:&quot;yes&quot;,&quot;autoplay_speed&quot;:5000,&quot;pause_on_hover&quot;:&quot;yes&quot;,&quot;pause_on_interaction&quot;:&quot;yes&quot;,&quot;infinite&quot;:&quot;yes&quot;,&quot;speed&quot;:500,&quot;offset_sides&quot;:&quot;none&quot;,&quot;arrows&quot;:&quot;yes&quot;,&quot;pagination&quot;:&quot;bullets&quot;,&quot;image_spacing_custom&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;image_spacing_custom_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;image_spacing_custom_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="loop-carousel.post">
+				<div class="elementor-widget-container">
+							<div class="swiper elementor-loop-container elementor-grid" dir="rtl">
+				<div class="swiper-wrapper" aria-live="off">
+		<style id="loop-5549">.elementor-5549 .elementor-element.elementor-element-bf0d25d{--display:flex;--min-height:350px;--flex-direction:column;--container-widget-width:100%;--container-widget-height:initial;--container-widget-flex-grow:0;--container-widget-align-self:initial;--flex-wrap-mobile:wrap;--justify-content:space-around;--overlay-opacity:0.56;--border-radius:10px 10px 10px 10px;--padding-top:32px;--padding-bottom:32px;--padding-left:32px;--padding-right:32px;}.elementor-5549 .elementor-element.elementor-element-bf0d25d::before, .elementor-5549 .elementor-element.elementor-element-bf0d25d > .elementor-background-video-container::before, .elementor-5549 .elementor-element.elementor-element-bf0d25d > .e-con-inner > .elementor-background-video-container::before, .elementor-5549 .elementor-element.elementor-element-bf0d25d > .elementor-background-slideshow::before, .elementor-5549 .elementor-element.elementor-element-bf0d25d > .e-con-inner > .elementor-background-slideshow::before, .elementor-5549 .elementor-element.elementor-element-bf0d25d > .elementor-motion-effects-container > .elementor-motion-effects-layer::before{background-color:var( --e-global-color-e0327bc );--background-overlay:'';}.elementor-widget-theme-post-title .elementor-heading-title{font-family:var( --e-global-typography-primary-font-family ), Sans-serif;font-size:var( --e-global-typography-primary-font-size );font-weight:var( --e-global-typography-primary-font-weight );color:var( --e-global-color-primary );}.elementor-5549 .elementor-element.elementor-element-471f804 .elementor-heading-title{font-family:"Open Sans Hebrew Condensed", Sans-serif;font-size:22px;font-weight:600;color:var( --e-global-color-2ab23ce );}.elementor-widget-theme-post-excerpt .elementor-widget-container{color:var( --e-global-color-text );font-family:var( --e-global-typography-text-font-family ), Sans-serif;font-size:var( --e-global-typography-text-font-size );font-weight:var( --e-global-typography-text-font-weight );}.elementor-widget-button .elementor-button{background-color:var( --e-global-color-accent );font-family:var( --e-global-typography-accent-font-family ), Sans-serif;font-size:var( --e-global-typography-accent-font-size );font-weight:var( --e-global-typography-accent-font-weight );}.elementor-5549 .elementor-element.elementor-element-1ca6b15 .elementor-button{background-color:var( --e-global-color-2072a24 );border-style:solid;border-width:1px 1px 1px 1px;border-radius:31px 31px 31px 31px;}@media(min-width:768px){.elementor-5549 .elementor-element.elementor-element-bf0d25d{--content-width:1424px;}}@media(max-width:1024px){.elementor-widget-theme-post-title .elementor-heading-title{font-size:var( --e-global-typography-primary-font-size );}.elementor-widget-theme-post-excerpt .elementor-widget-container{font-size:var( --e-global-typography-text-font-size );}.elementor-widget-button .elementor-button{font-size:var( --e-global-typography-accent-font-size );}}@media(max-width:767px){.elementor-widget-theme-post-title .elementor-heading-title{font-size:var( --e-global-typography-primary-font-size );}.elementor-widget-theme-post-excerpt .elementor-widget-container{font-size:var( --e-global-typography-text-font-size );}.elementor-widget-button .elementor-button{font-size:var( --e-global-typography-accent-font-size );}}</style>		<div data-elementor-type="loop-item" data-elementor-id="5549" class="elementor elementor-5549 swiper-slide e-loop-item e-loop-item-12373 post-12373 post type-post status-publish format-standard hentry category-uncategorized" data-elementor-post-type="elementor_library" role="group" aria-roledescription="slide" data-custom-edit-handle="1">
+			<div class="elementor-element elementor-element-bf0d25d e-flex e-con-boxed e-con e-parent" data-id="bf0d25d" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;jet_parallax_layout_list&quot;:[]}">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-471f804 elementor-widget elementor-widget-theme-post-title elementor-page-title elementor-widget-heading" data-id="471f804" data-element_type="widget" data-widget_type="theme-post-title.default">
+				<div class="elementor-widget-container">
+					<h1 class="elementor-heading-title elementor-size-default">היתרונות והחסרונות של הלוואה לעסק: מה כדאי לדעת לפני שמחליטים?</h1>				</div>
+				</div>
+				<div class="elementor-element elementor-element-1ca6b15 elementor-widget elementor-widget-button" data-id="1ca6b15" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-grow" href="https://otzma-p.co.il/%d7%94%d7%99%d7%aa%d7%a8%d7%95%d7%a0%d7%95%d7%aa-%d7%95%d7%94%d7%97%d7%a1%d7%a8%d7%95%d7%a0%d7%95%d7%aa-%d7%a9%d7%9c-%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%94-%d7%9c%d7%a2%d7%a1%d7%a7-%d7%9e%d7%94-%d7%9b/">
+						<span class="elementor-button-content-wrapper">
+									<span class="elementor-button-text">לחץ כאן</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+					</div>
+				</div>
+				</div>
+				<div data-elementor-type="loop-item" data-elementor-id="5549" class="elementor elementor-5549 swiper-slide e-loop-item e-loop-item-12327 post-12327 post type-post status-publish format-standard hentry category-uncategorized" data-elementor-post-type="elementor_library" role="group" aria-roledescription="slide" data-custom-edit-handle="1">
+			<div class="elementor-element elementor-element-bf0d25d e-flex e-con-boxed e-con e-parent" data-id="bf0d25d" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;jet_parallax_layout_list&quot;:[]}">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-471f804 elementor-widget elementor-widget-theme-post-title elementor-page-title elementor-widget-heading" data-id="471f804" data-element_type="widget" data-widget_type="theme-post-title.default">
+				<div class="elementor-widget-container">
+					<h1 class="elementor-heading-title elementor-size-default">כיצד להתמודד עם קשיים כלכליים באמצעות הלוואה לעסק</h1>				</div>
+				</div>
+				<div class="elementor-element elementor-element-1ca6b15 elementor-widget elementor-widget-button" data-id="1ca6b15" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-grow" href="https://otzma-p.co.il/%d7%9b%d7%99%d7%a6%d7%93-%d7%9c%d7%94%d7%aa%d7%9e%d7%95%d7%93%d7%93-%d7%a2%d7%9d-%d7%a7%d7%a9%d7%99%d7%99%d7%9d-%d7%9b%d7%9c%d7%9b%d7%9c%d7%99%d7%99%d7%9d-%d7%91%d7%90%d7%9e%d7%a6%d7%a2%d7%95%d7%aa/">
+						<span class="elementor-button-content-wrapper">
+									<span class="elementor-button-text">לחץ כאן</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+					</div>
+				</div>
+				</div>
+				<div data-elementor-type="loop-item" data-elementor-id="5549" class="elementor elementor-5549 swiper-slide e-loop-item e-loop-item-12326 post-12326 post type-post status-publish format-standard hentry category-uncategorized" data-elementor-post-type="elementor_library" role="group" aria-roledescription="slide" data-custom-edit-handle="1">
+			<div class="elementor-element elementor-element-bf0d25d e-flex e-con-boxed e-con e-parent" data-id="bf0d25d" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;jet_parallax_layout_list&quot;:[]}">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-471f804 elementor-widget elementor-widget-theme-post-title elementor-page-title elementor-widget-heading" data-id="471f804" data-element_type="widget" data-widget_type="theme-post-title.default">
+				<div class="elementor-widget-container">
+					<h1 class="elementor-heading-title elementor-size-default">פתרונות פיננסיים להבראת עסקים בקשיים</h1>				</div>
+				</div>
+				<div class="elementor-element elementor-element-1ca6b15 elementor-widget elementor-widget-button" data-id="1ca6b15" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-grow" href="https://otzma-p.co.il/%d7%a4%d7%aa%d7%a8%d7%95%d7%a0%d7%95%d7%aa-%d7%a4%d7%99%d7%a0%d7%a0%d7%a1%d7%99%d7%99%d7%9d-%d7%9c%d7%94%d7%91%d7%a8%d7%90%d7%aa-%d7%a2%d7%a1%d7%a7%d7%99%d7%9d-%d7%91%d7%a7%d7%a9%d7%99%d7%99%d7%9d/">
+						<span class="elementor-button-content-wrapper">
+									<span class="elementor-button-text">לחץ כאן</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+					</div>
+				</div>
+				</div>
+				<div data-elementor-type="loop-item" data-elementor-id="5549" class="elementor elementor-5549 swiper-slide e-loop-item e-loop-item-12325 post-12325 post type-post status-publish format-standard hentry category-uncategorized" data-elementor-post-type="elementor_library" role="group" aria-roledescription="slide" data-custom-edit-handle="1">
+			<div class="elementor-element elementor-element-bf0d25d e-flex e-con-boxed e-con e-parent" data-id="bf0d25d" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;jet_parallax_layout_list&quot;:[]}">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-471f804 elementor-widget elementor-widget-theme-post-title elementor-page-title elementor-widget-heading" data-id="471f804" data-element_type="widget" data-widget_type="theme-post-title.default">
+				<div class="elementor-widget-container">
+					<h1 class="elementor-heading-title elementor-size-default">פתרונות פיננסיים להלוואות לעסקים בקשיים</h1>				</div>
+				</div>
+				<div class="elementor-element elementor-element-1ca6b15 elementor-widget elementor-widget-button" data-id="1ca6b15" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-grow" href="https://otzma-p.co.il/%d7%a4%d7%aa%d7%a8%d7%95%d7%a0%d7%95%d7%aa-%d7%a4%d7%99%d7%a0%d7%a0%d7%a1%d7%99%d7%99%d7%9d-%d7%9c%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d-%d7%91%d7%a7%d7%a9/">
+						<span class="elementor-button-content-wrapper">
+									<span class="elementor-button-text">לחץ כאן</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+					</div>
+				</div>
+				</div>
+				<div data-elementor-type="loop-item" data-elementor-id="5549" class="elementor elementor-5549 swiper-slide e-loop-item e-loop-item-12324 post-12324 post type-post status-publish format-standard hentry category-uncategorized" data-elementor-post-type="elementor_library" role="group" aria-roledescription="slide" data-custom-edit-handle="1">
+			<div class="elementor-element elementor-element-bf0d25d e-flex e-con-boxed e-con e-parent" data-id="bf0d25d" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;jet_parallax_layout_list&quot;:[]}">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-471f804 elementor-widget elementor-widget-theme-post-title elementor-page-title elementor-widget-heading" data-id="471f804" data-element_type="widget" data-widget_type="theme-post-title.default">
+				<div class="elementor-widget-container">
+					<h1 class="elementor-heading-title elementor-size-default">הלוואות לעסקי חרבות ברזל: איך לבחור את הפתרון המושלם</h1>				</div>
+				</div>
+				<div class="elementor-element elementor-element-1ca6b15 elementor-widget elementor-widget-button" data-id="1ca6b15" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-grow" href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99-%d7%97%d7%a8%d7%91%d7%95%d7%aa-%d7%91%d7%a8%d7%96%d7%9c-%d7%90%d7%99%d7%9a-%d7%9c%d7%91%d7%97%d7%95%d7%a8-%d7%90%d7%aa-%d7%94/">
+						<span class="elementor-button-content-wrapper">
+									<span class="elementor-button-text">לחץ כאן</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+					</div>
+				</div>
+				</div>
+				<div data-elementor-type="loop-item" data-elementor-id="5549" class="elementor elementor-5549 swiper-slide e-loop-item e-loop-item-12323 post-12323 post type-post status-publish format-standard hentry category-uncategorized" data-elementor-post-type="elementor_library" role="group" aria-roledescription="slide" data-custom-edit-handle="1">
+			<div class="elementor-element elementor-element-bf0d25d e-flex e-con-boxed e-con e-parent" data-id="bf0d25d" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;jet_parallax_layout_list&quot;:[]}">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-471f804 elementor-widget elementor-widget-theme-post-title elementor-page-title elementor-widget-heading" data-id="471f804" data-element_type="widget" data-widget_type="theme-post-title.default">
+				<div class="elementor-widget-container">
+					<h1 class="elementor-heading-title elementor-size-default">פתרונות פיננסיים לעסק בקשיים: איך הלוואה יכולה לעזור</h1>				</div>
+				</div>
+				<div class="elementor-element elementor-element-1ca6b15 elementor-widget elementor-widget-button" data-id="1ca6b15" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-grow" href="https://otzma-p.co.il/%d7%a4%d7%aa%d7%a8%d7%95%d7%a0%d7%95%d7%aa-%d7%a4%d7%99%d7%a0%d7%a0%d7%a1%d7%99%d7%99%d7%9d-%d7%9c%d7%a2%d7%a1%d7%a7-%d7%91%d7%a7%d7%a9%d7%99%d7%99%d7%9d-%d7%90%d7%99%d7%9a-%d7%94%d7%9c%d7%95%d7%95/">
+						<span class="elementor-button-content-wrapper">
+									<span class="elementor-button-text">לחץ כאן</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+					</div>
+				</div>
+				</div>
+				</div>
+		</div>
+					<div class="elementor-swiper-button elementor-swiper-button-prev" role="button" tabindex="0" aria-label="הקודם">
+				<i aria-hidden="true" class="eicon-chevron-left"></i>			</div>
+			<div class="elementor-swiper-button elementor-swiper-button-next" role="button" tabindex="0" aria-label="הבא">
+				<i aria-hidden="true" class="eicon-chevron-right"></i>			</div>
+					<div class="swiper-pagination"></div>
+						</div>
+				</div>
+					</div>
+				</div>
+				</div>
+				<div data-elementor-type="footer" data-elementor-id="6029" class="elementor elementor-6029 elementor-location-footer" data-elementor-post-type="elementor_library">
+			<div class="elementor-element elementor-element-7ad8f70 e-flex e-con-boxed e-con e-parent" data-id="7ad8f70" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;jet_parallax_layout_list&quot;:[]}">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-2f0c44c e-con-full e-flex e-con e-child" data-id="2f0c44c" data-element_type="container" data-settings="{&quot;jet_parallax_layout_list&quot;:[]}">
+				<div class="elementor-element elementor-element-66458e6 elementor-widget elementor-widget-image" data-id="66458e6" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="512" height="114" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20114'%3E%3C/svg%3E" class="attachment-large size-large wp-image-3894" alt="" data-lazy-srcset="https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-04-1.png 512w, https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-04-1-300x67.png 300w" data-lazy-sizes="(max-width: 512px) 100vw, 512px" data-lazy-src="https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-04-1.png" /><noscript><img width="512" height="114" src="https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-04-1.png" class="attachment-large size-large wp-image-3894" alt="" srcset="https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-04-1.png 512w, https://otzma-p.co.il/wp-content/uploads/2023/08/לוגו-04-1-300x67.png 300w" sizes="(max-width: 512px) 100vw, 512px" /></noscript>															</div>
+				</div>
+				<div class="elementor-element elementor-element-3cf9341 elementor-widget elementor-widget-image" data-id="3cf9341" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+																<a href="https://www.dunsguide.co.il/C939444973e52c993695da7617277d4ea_%D7%A4%D7%99%D7%A0%D7%A0%D7%A1%D7%99%D7%9D/%D7%A2%D7%95%D7%A6%D7%9E%D7%94_%D7%A2%D7%A4_%D7%A4%D7%99%D7%A0%D7%A0%D7%A1%D7%99%D7%9D/">
+							<img width="800" height="800" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20800%20800'%3E%3C/svg%3E" class="attachment-large size-large wp-image-8978" alt="" data-lazy-srcset="https://otzma-p.co.il/wp-content/uploads/2024/04/dunsguide_blue_seal.png 1022w, https://otzma-p.co.il/wp-content/uploads/2024/04/dunsguide_blue_seal-300x300.png 300w, https://otzma-p.co.il/wp-content/uploads/2024/04/dunsguide_blue_seal-150x150.png 150w, https://otzma-p.co.il/wp-content/uploads/2024/04/dunsguide_blue_seal-768x768.png 768w, https://otzma-p.co.il/wp-content/uploads/2024/04/dunsguide_blue_seal-600x600.png 600w, https://otzma-p.co.il/wp-content/uploads/2024/04/dunsguide_blue_seal-100x100.png 100w" data-lazy-sizes="(max-width: 800px) 100vw, 800px" data-lazy-src="https://otzma-p.co.il/wp-content/uploads/2024/04/dunsguide_blue_seal.png" /><noscript><img width="800" height="800" src="https://otzma-p.co.il/wp-content/uploads/2024/04/dunsguide_blue_seal.png" class="attachment-large size-large wp-image-8978" alt="" srcset="https://otzma-p.co.il/wp-content/uploads/2024/04/dunsguide_blue_seal.png 1022w, https://otzma-p.co.il/wp-content/uploads/2024/04/dunsguide_blue_seal-300x300.png 300w, https://otzma-p.co.il/wp-content/uploads/2024/04/dunsguide_blue_seal-150x150.png 150w, https://otzma-p.co.il/wp-content/uploads/2024/04/dunsguide_blue_seal-768x768.png 768w, https://otzma-p.co.il/wp-content/uploads/2024/04/dunsguide_blue_seal-600x600.png 600w, https://otzma-p.co.il/wp-content/uploads/2024/04/dunsguide_blue_seal-100x100.png 100w" sizes="(max-width: 800px) 100vw, 800px" /></noscript>								</a>
+															</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-44e3421 e-con-full e-flex e-con e-child" data-id="44e3421" data-element_type="container" data-settings="{&quot;jet_parallax_layout_list&quot;:[]}">
+				<div class="elementor-element elementor-element-ff6d81b elementor-widget elementor-widget-heading" data-id="ff6d81b" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h2 class="elementor-heading-title elementor-size-default">מפת אתר</h2>				</div>
+				</div>
+				<div class="elementor-element elementor-element-c2e948f elementor-mobile-align-center elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="c2e948f" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+										<span class="elementor-icon-list-text">דף הבית</span>
+									</li>
+								<li class="elementor-icon-list-item">
+										<span class="elementor-icon-list-text">אודות</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="https://otzma-p.co.il/%d7%94%d7%9c%d7%95%d7%95%d7%90%d7%95%d7%aa-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/">
+
+											<span class="elementor-icon-list-text">הלוואות לעסקים</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+										<span class="elementor-icon-list-text">הלוואות בערבות המדינה </span>
+									</li>
+								<li class="elementor-icon-list-item">
+										<span class="elementor-icon-list-text">הלוואות חוץ בנקאיות</span>
+									</li>
+								<li class="elementor-icon-list-item">
+										<span class="elementor-icon-list-text">הלוואות פילנתרופיות (קרנות)</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="https://otzma-p.co.il/%d7%94%d7%97%d7%96%d7%a8%d7%99-%d7%9e%d7%a1-2-2/">
+
+											<span class="elementor-icon-list-text">החזרי מס</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="https://otzma-p.co.il/%d7%a6%d7%a8%d7%95-%d7%a7%d7%a9%d7%a8/">
+
+											<span class="elementor-icon-list-text">צור קשר</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="https://otzma-p.co.il/%d7%a9%d7%90%d7%9c%d7%95%d7%aa-%d7%aa%d7%a9%d7%95%d7%91%d7%95%d7%aa/">
+
+											<span class="elementor-icon-list-text">שאלות תשובות</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="https://otzma-p.co.il/%d7%91%d7%9c%d7%95%d7%92/">
+
+											<span class="elementor-icon-list-text">בלוג</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="https://otzma-p.co.il/%d7%aa%d7%a7%d7%a0%d7%95%d7%9f-%d7%90%d7%aa%d7%a8/">
+
+											<span class="elementor-icon-list-text">תקנון אתר</span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-09e8da6 e-con-full e-flex e-con e-child" data-id="09e8da6" data-element_type="container" data-settings="{&quot;jet_parallax_layout_list&quot;:[]}">
+				<div class="elementor-element elementor-element-4fe2b10 elementor-widget elementor-widget-heading" data-id="4fe2b10" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h2 class="elementor-heading-title elementor-size-default">הישארו מעודכנים</h2>				</div>
+				</div>
+				<div class="elementor-element elementor-element-7437086 elementor-icon-list--layout-inline elementor-mobile-align-center elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="7437086" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items elementor-inline-items">
+							<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="https://www.facebook.com/profile.php?id=100089868395572&#038;mibextid=LQQJ4d" target="_blank">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fab fa-facebook-square"></i>						</span>
+										<span class="elementor-icon-list-text"></span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="https://www.instagram.com/otzma_finance/" target="_blank">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fab fa-instagram"></i>						</span>
+										<span class="elementor-icon-list-text"></span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="https://api.whatsapp.com/send?phone=972527080655&#038;text=%D7%94%D7%99%D7%99,%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%A8%D7%A6%D7%99%D7%AA%D7%99%20%D7%9C%D7%93%D7%A2%D7%AA%20%D7%A2%D7%95%D7%93%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fab fa-whatsapp-square"></i>						</span>
+										<span class="elementor-icon-list-text"></span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-f709908 elementor-widget elementor-widget-icon-box" data-id="f709908" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-icon-box-wrapper">
+
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span  >
+							שעות פעילות :						</span>
+					</h3>
+				
+									<p class="elementor-icon-box-description">
+						ימים א-ה 09:00-16:00					</p>
+				
+			</div>
+			
+		</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-d97b4b1 elementor-align-right elementor-widget elementor-widget-button" data-id="d97b4b1" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-grow" href="https://otzma-p.co.il/%d7%94%d7%a1%d7%93%d7%a8%d7%99-%d7%a0%d7%92%d7%99%d7%a9%d7%95%d7%aa/">
+						<span class="elementor-button-content-wrapper">
+									<span class="elementor-button-text">הסדרי נגישות</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-6e7d5f4 e-con-full e-flex e-con e-child" data-id="6e7d5f4" data-element_type="container" data-settings="{&quot;jet_parallax_layout_list&quot;:[]}">
+				<div class="elementor-element elementor-element-eb80027 elementor-widget elementor-widget-heading" data-id="eb80027" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h2 class="elementor-heading-title elementor-size-default">צרו קשר</h2>				</div>
+				</div>
+				<div class="elementor-element elementor-element-bdc2e67 elementor-mobile-align-center elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="bdc2e67" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-map-marker-alt"></i>						</span>
+										<span class="elementor-icon-list-text">האתגר 2, טירת הכרמל צפון</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="tel:%2004-6455557" target="_blank">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-phone"></i>						</span>
+										<span class="elementor-icon-list-text">04-6455557</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="/cdn-cgi/l/email-protection#09466f6f606a6c49667d7364682479276a66276065" target="_blank">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-envelope-open"></i>						</span>
+										<span class="elementor-icon-list-text"><span class="__cf_email__" data-cfemail="345b52525d5751745b404e595519441a575b1a5d58">[email&#160;protected]</span></span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+				</div>
+					</div>
+				</div>
+				</div>
+		
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/hello-elementor/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+        <script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // Function to check if localStorage is available
+            function localStorageAvailable() {
+                try {
+                    var test = "__localStorage_test__";
+                    localStorage.setItem(test, test);
+                    localStorage.removeItem(test);
+                    return true;
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            var exactTimeGlobal = null;
+            if (localStorageAvailable()) {
+                // Check if exactTimeGlobal is already stored in localStorage
+                exactTimeGlobal = localStorage.getItem('exactTimeGlobal');
+            }
+
+            // Common attributes and styles for hidden fields
+            var commonAttributes = {
+                'aria-hidden': "true", // Accessibility
+                tabindex: "-1", // Accessibility
+                autocomplete: "off", // Prevent browser autofill
+                class: "maspik-field"
+            };
+
+            var hiddenFieldStyles = {
+                position: "absolute",
+                left: "-99999px"
+            };
+
+            // Function to create a hidden field
+            function createHiddenField(attributes, styles) {
+                var field = document.createElement("input");
+                for (var attr in attributes) {
+                    field.setAttribute(attr, attributes[attr]);
+                }
+                for (var style in styles) {
+                    field.style[style] = styles[style];
+                }
+                return field;
+            }
+
+            // Function to add hidden fields to the form if they do not already exist
+            function addHiddenFields(formSelector, fieldClass) {
+                document.querySelectorAll(formSelector).forEach(function(form) {
+                    if (!form.querySelector('.maspik-field')) {
+                        if ("1") {
+                            var honeypot = createHiddenField({
+                                type: "text",
+                                name: "full-name-maspik-hp",
+                                id: "full-name-maspik-hp",
+                                class: fieldClass + " maspik-field",
+                                placeholder: "Leave this field empty"
+                            }, hiddenFieldStyles);
+                            form.appendChild(honeypot);
+                        }
+
+                        if (null) {
+                            var currentYearField = createHiddenField({
+                                type: "text",
+                                name: "Maspik-currentYear",
+                                id: "Maspik-currentYear",
+                                class: fieldClass + " maspik-field"
+                            }, hiddenFieldStyles);
+                            form.appendChild(currentYearField);
+                        }
+
+                        if (null) {
+                            var exactTimeField = createHiddenField({
+                                type: "text",
+                                name: "Maspik-exactTime",
+                                id: "Maspik-exactTime",
+                                class: fieldClass + " maspik-field"
+                            }, hiddenFieldStyles);
+                            form.appendChild(exactTimeField);
+                        }
+                    }
+                });
+            }
+
+            // Add hidden fields to various form types
+            //Not suported ninja form
+            addHiddenFields('form.brxe-brf-pro-forms', 'brxe-brf-pro-forms-field-text');
+            //formidable
+            addHiddenFields('form.frm-show-form', 'frm_form_field');
+            addHiddenFields('form.elementor-form', 'elementor-field-textual');
+            //hello plus
+            addHiddenFields('form.ehp-form', 'hello-plus-field-text');
+
+            // Function to set the current year and exact time in the appropriate fields
+            function setDateFields() {
+                var currentYear = new Date().getFullYear();
+
+                if (!exactTimeGlobal) {
+                    exactTimeGlobal = Math.floor(Date.now() / 1000);
+                    if (localStorageAvailable()) {
+                        localStorage.setItem('exactTimeGlobal', exactTimeGlobal);
+                    }
+                }
+
+                document.querySelectorAll('input[name="Maspik-currentYear"]').forEach(function(input) {
+                    input.value = currentYear;
+                });
+
+                document.querySelectorAll('input[name="Maspik-exactTime"]').forEach(function(input) {
+                    input.value = exactTimeGlobal;
+                });
+            }
+
+            // Initial call to set date fields
+            setDateFields();
+
+            // Use MutationObserver to detect AJAX form reloads and reset hidden fields
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList' && mutation.addedNodes.length) {
+                        setTimeout(function() {
+                            setDateFields();
+                        }, 500);
+                    }
+                });
+            });
+
+            observer.observe(document.body, { childList: true, subtree: true });
+        });
+        </script>
+        <style>
+        .maspik-field { display: none !important; }
+        </style>
+        <div id='pys_ajax_events'></div>        <script type="rocketlazyloadscript">
+            var node = document.getElementsByClassName('woocommerce-message')[0];
+            if(node && document.getElementById('pys_late_event')) {
+                var messageText = node.textContent.trim();
+                if(!messageText) {
+                    node.style.display = 'none';
+                }
+            }
+        </script>
+        			<script type="rocketlazyloadscript">
+				const lazyloadRunObserver = () => {
+					const lazyloadBackgrounds = document.querySelectorAll( `.e-con.e-parent:not(.e-lazyloaded)` );
+					const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
+						entries.forEach( ( entry ) => {
+							if ( entry.isIntersecting ) {
+								let lazyloadBackground = entry.target;
+								if( lazyloadBackground ) {
+									lazyloadBackground.classList.add( 'e-lazyloaded' );
+								}
+								lazyloadBackgroundObserver.unobserve( entry.target );
+							}
+						});
+					}, { rootMargin: '200px 0px 200px 0px' } );
+					lazyloadBackgrounds.forEach( ( lazyloadBackground ) => {
+						lazyloadBackgroundObserver.observe( lazyloadBackground );
+					} );
+				};
+				const events = [
+					'DOMContentLoaded',
+					'elementor/lazyload/observe',
+				];
+				events.forEach( ( event ) => {
+					document.addEventListener( event, lazyloadRunObserver );
+				} );
+			</script>
+			<noscript><img height="1" width="1" style="display: none;" src="https://www.facebook.com/tr?id=1951133295239804&ev=PageView&noscript=1&cd%5Bpost_category%5D=Uncategorized&cd%5Bpage_title%5D=%D7%A2%D7%95%D7%A6%D7%9E%D7%94+%D7%A4%D7%AA%D7%A8%D7%95%D7%A0%D7%95%D7%AA+%D7%A4%D7%99%D7%A0%D7%A0%D7%A1%D7%99%D7%99%D7%9D&cd%5Bpost_type%5D=page&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=otzma-p.co.il%2F%25d7%2591%25d7%259c%25d7%2595%25d7%2592%2F" alt=""></noscript>
+	<script type="rocketlazyloadscript">
+		(function () {
+			var c = document.body.className;
+			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+			document.body.className = c;
+		})();
+	</script>
+	<script type="rocketlazyloadscript" id="enable-accessibility-js" data-rocket-src="https://cdn.enable.co.il/licenses/enable-L95645b1ok7cqlj-1021-36750/init.js?ver=1.4.1"></script>
+<script id="woo-donations-front-script-js-extra">
+var wdgk_obj = {"ajaxurl":"https://otzma-p.co.il/wp-admin/admin-ajax.php","options":{"decimal_sep":".","thousand_sep":","}};
+//# sourceURL=woo-donations-front-script-js-extra
+</script>
+<script type="rocketlazyloadscript" data-minify="1" id="woo-donations-front-script-js" data-rocket-src="https://otzma-p.co.il/wp-content/cache/min/1/wp-content/plugins/woo-donations/assets/js/wdgk-front-script.js?ver=1787334853"></script>
+<script type="rocketlazyloadscript" id="smartmenus-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/elementor-pro/assets/lib/smartmenus/jquery.smartmenus.min.js?ver=1.2.1"></script>
+<script type="rocketlazyloadscript" id="e-sticky-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min.js?ver=3.28.2"></script>
+<script type="rocketlazyloadscript" id="imagesloaded-js" data-rocket-src="https://otzma-p.co.il/wp-includes/js/imagesloaded.min.js?ver=5.0.0"></script>
+<script type="rocketlazyloadscript" id="sourcebuster-js-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/woocommerce/assets/js/sourcebuster/sourcebuster.min.js?ver=9.7.1"></script>
+<script id="wc-order-attribution-js-extra">
+var wc_order_attribution = {"params":{"lifetime":1.0e-5,"session":30,"base64":false,"ajaxurl":"https://otzma-p.co.il/wp-admin/admin-ajax.php","prefix":"wc_order_attribution_","allowTracking":true},"fields":{"source_type":"current.typ","referrer":"current_add.rf","utm_campaign":"current.cmp","utm_source":"current.src","utm_medium":"current.mdm","utm_content":"current.cnt","utm_id":"current.id","utm_term":"current.trm","utm_source_platform":"current.plt","utm_creative_format":"current.fmt","utm_marketing_tactic":"current.tct","session_entry":"current_add.ep","session_start_time":"current_add.fd","session_pages":"session.pgs","session_count":"udata.vst","user_agent":"udata.uag"}};
+//# sourceURL=wc-order-attribution-js-extra
+</script>
+<script type="rocketlazyloadscript" id="wc-order-attribution-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/woocommerce/assets/js/frontend/order-attribution.min.js?ver=9.7.1"></script>
+<script type="rocketlazyloadscript" id="elementor-pro-webpack-runtime-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.28.2"></script>
+<script type="rocketlazyloadscript" id="elementor-webpack-runtime-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.28.3"></script>
+<script type="rocketlazyloadscript" id="elementor-frontend-modules-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.28.3"></script>
+<script type="rocketlazyloadscript" id="wp-hooks-js" data-rocket-src="https://otzma-p.co.il/wp-includes/js/dist/hooks.min.js?ver=f0f188028580e8dc1255"></script>
+<script type="rocketlazyloadscript" id="wp-i18n-js" data-rocket-src="https://otzma-p.co.il/wp-includes/js/dist/i18n.min.js?ver=1dfe7db3940c23ea9216"></script>
+<script type="rocketlazyloadscript" id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'rtl' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script type="rocketlazyloadscript" id="elementor-pro-frontend-js-before">
+var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/otzma-p.co.il\/wp-admin\/admin-ajax.php","nonce":"9f91edb9b5","urls":{"assets":"https:\/\/otzma-p.co.il\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/otzma-p.co.il\/wp-json\/"},"settings":{"lazy_load_background_images":true},"popup":{"hasPopUps":true},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"woocommerce":{"menu_cart":{"cart_page_url":"https:\/\/otzma-p.co.il\/cart\/","checkout_page_url":"https:\/\/otzma-p.co.il\/checkout\/","fragments_nonce":"3e102c67ed"}},"facebook_sdk":{"lang":"he_IL","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/otzma-p.co.il\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
+//# sourceURL=elementor-pro-frontend-js-before
+</script>
+<script type="rocketlazyloadscript" id="elementor-pro-frontend-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.28.2"></script>
+<script type="rocketlazyloadscript" id="jquery-ui-core-js-before">
+jQuery.uiBackCompat = true;
+//# sourceURL=jquery-ui-core-js-before
+</script>
+<script type="rocketlazyloadscript" id="jquery-ui-core-js" data-rocket-src="https://otzma-p.co.il/wp-includes/js/jquery/ui/core.min.js?ver=1.14.2"></script>
+<script type="rocketlazyloadscript" id="elementor-frontend-js-before">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"\u05e9\u05ea\u05e3 \u05d1\u05e4\u05d9\u05d9\u05e1\u05d1\u05d5\u05e7","shareOnTwitter":"\u05e9\u05ea\u05e3 \u05d1\u05d8\u05d5\u05d5\u05d9\u05d8\u05e8","pinIt":"\u05dc\u05e0\u05e2\u05d5\u05e5 \u05d1\u05e4\u05d9\u05e0\u05d8\u05e8\u05e1\u05d8","download":"\u05d4\u05d5\u05e8\u05d3\u05d4","downloadImage":"\u05d4\u05d5\u05e8\u05d3\u05ea \u05ea\u05de\u05d5\u05e0\u05d4","fullscreen":"\u05de\u05e1\u05da \u05de\u05dc\u05d0","zoom":"\u05de\u05d9\u05e7\u05d5\u05d3","share":"\u05e9\u05ea\u05e3","playVideo":"\u05e0\u05d2\u05df \u05d5\u05d9\u05d3\u05d0\u05d5","previous":"\u05e7\u05d5\u05d3\u05dd","next":"\u05d4\u05d1\u05d0","close":"\u05e1\u05d2\u05d5\u05e8","a11yCarouselPrevSlideMessage":"\u05e9\u05e7\u05d5\u05e4\u05d9\u05ea \u05e7\u05d5\u05d3\u05de\u05ea","a11yCarouselNextSlideMessage":"\u05e9\u05e7\u05d5\u05e4\u05d9\u05ea \u05d4\u05d1\u05d0\u05d4","a11yCarouselFirstSlideMessage":"\u05d6\u05d5\u05d4\u05d9 \u05d4\u05e9\u05e7\u05d5\u05e4\u05d9\u05ea \u05d4\u05e8\u05d0\u05e9\u05d5\u05e0\u05d4","a11yCarouselLastSlideMessage":"\u05d6\u05d5\u05d4\u05d9 \u05d4\u05e9\u05e7\u05d5\u05e4\u05d9\u05ea \u05d4\u05d0\u05d7\u05e8\u05d5\u05e0\u05d4","a11yCarouselPaginationBulletMessage":"\u05dc\u05e2\u05d1\u05d5\u05e8 \u05dc\u05e9\u05e7\u05d5\u05e4\u05d9\u05ea"},"is_rtl":true,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"\u05de\u05d5\u05d1\u05d9\u05d9\u05dc \u05d0\u05e0\u05db\u05d9","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"\u05de\u05d5\u05d1\u05d9\u05d9\u05dc \u05d0\u05d5\u05e4\u05e7\u05d9","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"\u05d8\u05d0\u05d1\u05dc\u05d8 \u05d0\u05e0\u05db\u05d9","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"\u05d8\u05d0\u05d1\u05dc\u05d8 \u05d0\u05d5\u05e4\u05e7\u05d9","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"\u05dc\u05e4\u05d8\u05d5\u05e4","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"\u05de\u05e1\u05da \u05e8\u05d7\u05d1","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"3.28.3","is_static":false,"experimentalFeatures":{"container":true,"e_local_google_fonts":true,"theme_builder_v2":true,"nested-elements":true,"editor_v2":true,"home_screen":true,"mega-menu":true},"urls":{"assets":"https:\/\/otzma-p.co.il\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/otzma-p.co.il\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/otzma-p.co.il\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"e5df48e6ad"},"swiperClass":"swiper","settings":{"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description","woocommerce_notices_elements":[]},"post":{"id":0,"title":"\u05d1\u05dc\u05d5\u05d2 - \u05e2\u05d5\u05e6\u05de\u05d4 \u05e4\u05ea\u05e8\u05d5\u05e0\u05d5\u05ea \u05e4\u05d9\u05e0\u05e0\u05e1\u05d9\u05d9\u05dd","excerpt":""}};
+//# sourceURL=elementor-frontend-js-before
+</script>
+<script type="rocketlazyloadscript" id="elementor-frontend-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.28.3"></script>
+<script type="rocketlazyloadscript" id="pro-elements-handlers-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.28.2"></script>
+<script id="jet-elements-js-extra">
+var jetElements = {"ajaxUrl":"https://otzma-p.co.il/wp-admin/admin-ajax.php","isMobile":"false","templateApiUrl":"https://otzma-p.co.il/wp-json/jet-elements-api/v1/elementor-template","devMode":"false","messages":{"invalidMail":"Please specify a valid e-mail"}};
+//# sourceURL=jet-elements-js-extra
+</script>
+<script type="rocketlazyloadscript" id="jet-elements-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/jet-elements/assets/js/jet-elements.min.js?ver=2.7.5"></script>
+<script id="jet-tabs-frontend-js-extra">
+var JetTabsSettings = {"ajaxurl":"https://otzma-p.co.il/wp-admin/admin-ajax.php","isMobile":"false","templateApiUrl":"https://otzma-p.co.il/wp-json/jet-tabs-api/v1/elementor-template","devMode":"false","isSelfRequest":""};
+//# sourceURL=jet-tabs-frontend-js-extra
+</script>
+<script type="rocketlazyloadscript" id="jet-tabs-frontend-js" data-rocket-src="https://otzma-p.co.il/wp-content/plugins/jet-tabs/assets/js/jet-tabs-frontend.min.js?ver=2.2.8"></script>
+<script type="rocketlazyloadscript" data-minify="1" id="jet-tricks-popperjs-js" data-rocket-src="https://otzma-p.co.il/wp-content/cache/min/1/wp-content/plugins/jet-tricks/assets/js/lib/tippy/popperjs.js?ver=1787334853"></script>
+<script type="rocketlazyloadscript" data-minify="1" id="jet-tricks-tippy-bundle-js" data-rocket-src="https://otzma-p.co.il/wp-content/cache/min/1/wp-content/plugins/jet-tricks/assets/js/lib/tippy/tippy-bundle.js?ver=1787334853"></script>
+<script id="jet-tricks-frontend-js-extra">
+var JetTricksSettings = {"elements_data":{"sections":{"dd8d3a3":{"view_more":false,"particles":"false","particles_json":""},"71df86b":{"view_more":false,"particles":"false","particles_json":""},"0d8750f":{"view_more":false,"particles":"false","particles_json":""},"da9c3a9":{"view_more":false,"particles":"false","particles_json":""},"9a843f1":{"view_more":false,"particles":"false","particles_json":""},"deed207":{"view_more":false,"particles":"false","particles_json":""},"a7028ac":{"view_more":false,"particles":"false","particles_json":""},"39f58e0":{"view_more":false,"particles":"false","particles_json":""},"e72c973":{"view_more":false,"particles":"false","particles_json":""},"bf0d25d":{"view_more":false,"particles":"false","particles_json":""},"7ad8f70":{"view_more":false,"particles":"false","particles_json":""},"2f0c44c":{"view_more":false,"particles":"false","particles_json":""},"44e3421":{"view_more":false,"particles":"false","particles_json":""},"09e8da6":{"view_more":false,"particles":"false","particles_json":""},"6e7d5f4":{"view_more":false,"particles":"false","particles_json":""}},"columns":[],"widgets":{"3aae1b2":[],"4b8c880":[],"cdb2e51":[],"5abf9d3":[],"2c85035":[],"e02bfe2":[],"f275fa7":[],"d1b3a97":[],"78bd920":[],"332f8dd":[],"0c13728":[],"32f8ae0":[],"24fe540":[],"471f804":[],"d6b6382":[],"1ca6b15":[],"66458e6":[],"3cf9341":[],"ff6d81b":[],"c2e948f":[],"4fe2b10":[],"7437086":[],"f709908":[],"d97b4b1":[],"eb80027":[],"bdc2e67":[]}}};
+//# sourceURL=jet-tricks-frontend-js-extra
+</script>
+<script type="rocketlazyloadscript" data-minify="1" id="jet-tricks-frontend-js" data-rocket-src="https://otzma-p.co.il/wp-content/cache/min/1/wp-content/plugins/jet-tricks/assets/js/jet-tricks-frontend.js?ver=1787334853"></script>
+﻿<script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+(function(l,e,a,d,i,m,s){l[i]=l[i]||function(){
+(l[i].q=l[i].q||[]).push(arguments)};m=e.createElement(a),s=e.getElementsByTagName(a)[0];m.async=0;m.src=d;s.parentNode.insertBefore(m,s)
+})(window,document,'script','//cdn.lead.im/api/v2/leadim.api.js','leadim');
+leadim('trackModel', 'firstclick');
+leadim('ready', function() {  leadim('setforms', {selector: "input[name='form_fields[lm_serfer]']", create:false});   });  
+</script>
+<script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://otzma-p.co.il/wp-content/plugins/wp-rocket/assets/js/lazyload/17.5/lazyload.min.js"></script><script>function lazyLoadThumb(e){var t='<img data-lazy-src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"><noscript><img src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"></noscript>',a='<button class="play" aria-label="play Youtube video"></button>';return t.replace("ID",e)+a}function lazyLoadYoutubeIframe(){var e=document.createElement("iframe"),t="ID?autoplay=1";t+=0===this.parentNode.dataset.query.length?'':'&'+this.parentNode.dataset.query;e.setAttribute("src",t.replace("ID",this.parentNode.dataset.src)),e.setAttribute("frameborder","0"),e.setAttribute("allowfullscreen","1"),e.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"),this.parentNode.parentNode.replaceChild(e,this.parentNode)}document.addEventListener("DOMContentLoaded",function(){var e,t,p,a=document.getElementsByClassName("rll-youtube-player");for(t=0;t<a.length;t++)e=document.createElement("div"),e.setAttribute("data-id",a[t].dataset.id),e.setAttribute("data-query", a[t].dataset.query),e.setAttribute("data-src", a[t].dataset.src),e.innerHTML=lazyLoadThumb(a[t].dataset.id),a[t].appendChild(e),p=e.querySelector('.play'),p.onclick=lazyLoadYoutubeIframe});</script>
+<script>class RocketElementorAnimation{constructor(){this.deviceMode=document.createElement("span"),this.deviceMode.id="elementor-device-mode",this.deviceMode.setAttribute("class","elementor-screen-only"),document.body.appendChild(this.deviceMode)}_detectAnimations(){let t=getComputedStyle(this.deviceMode,":after").content.replace(/"/g,"");this.animationSettingKeys=this._listAnimationSettingsKeys(t),document.querySelectorAll(".elementor-invisible[data-settings]").forEach(t=>{const e=t.getBoundingClientRect();if(e.bottom>=0&&e.top<=window.innerHeight)try{this._animateElement(t)}catch(t){}})}_animateElement(t){const e=JSON.parse(t.dataset.settings),i=e._animation_delay||e.animation_delay||0,n=e[this.animationSettingKeys.find(t=>e[t])];if("none"===n)return void t.classList.remove("elementor-invisible");t.classList.remove(n),this.currentAnimation&&t.classList.remove(this.currentAnimation),this.currentAnimation=n;let s=setTimeout(()=>{t.classList.remove("elementor-invisible"),t.classList.add("animated",n),this._removeAnimationSettings(t,e)},i);window.addEventListener("rocket-startLoading",function(){clearTimeout(s)})}_listAnimationSettingsKeys(t="mobile"){const e=[""];switch(t){case"mobile":e.unshift("_mobile");case"tablet":e.unshift("_tablet");case"desktop":e.unshift("_desktop")}const i=[];return["animation","_animation"].forEach(t=>{e.forEach(e=>{i.push(t+e)})}),i}_removeAnimationSettings(t,e){this._listAnimationSettingsKeys().forEach(t=>delete e[t]),t.dataset.settings=JSON.stringify(e)}static run(){const t=new RocketElementorAnimation;requestAnimationFrame(t._detectAnimations.bind(t))}}document.addEventListener("DOMContentLoaded",RocketElementorAnimation.run);</script></body>
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1787347997 -->
