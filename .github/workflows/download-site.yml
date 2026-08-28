@@ -1,6 +1,9 @@
 name: Download site into repo
 
 on:
+  push:
+    paths:
+      - ".github/workflows/download-site.yml"
   workflow_dispatch:
     inputs:
       site_url:
