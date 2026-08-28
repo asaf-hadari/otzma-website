@@ -1,0 +1,56 @@
+name: Download site into repo
+
+on:
+  workflow_dispatch:
+    inputs:
+      site_url:
+        description: "URL of the site to mirror"
+        required: false
+        default: "https://otzma-p.co.il/"
+      target_dir:
+        description: "Directory (relative to repo root) to save the downloaded site into"
+        required: false
+        default: "site"
+
+permissions:
+  contents: write
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download site with wget
+        run: |
+          set -e
+          TARGET_DIR="${{ github.event.inputs.target_dir || 'site' }}"
+          SITE_URL="${{ github.event.inputs.site_url || 'https://otzma-p.co.il/' }}"
+          mkdir -p "$TARGET_DIR"
+          wget \
+            --mirror \
+            --convert-links \
+            --adjust-extension \
+            --page-requisites \
+            --no-parent \
+            --no-host-directories \
+            --directory-prefix="$TARGET_DIR" \
+            --user-agent="Mozilla/5.0 (compatible; site-backup-bot)" \
+            -e robots=off \
+            --wait=1 \
+            "$SITE_URL"
+
+      - name: Commit and push downloaded files
+        run: |
+          set -e
+          TARGET_DIR="${{ github.event.inputs.target_dir || 'site' }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "$TARGET_DIR"
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Mirror site files from ${{ github.event.inputs.site_url || 'https://otzma-p.co.il/' }}"
+            git push origin HEAD:"${{ github.ref_name }}"
+          fi
