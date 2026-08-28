@@ -1,9 +1,6 @@
 name: Download site into repo
 
 on:
-  push:
-    paths:
-      - ".github/workflows/download-site.yml"
   workflow_dispatch:
     inputs:
       site_url:
@@ -21,6 +18,7 @@ permissions:
 jobs:
   mirror:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -31,18 +29,25 @@ jobs:
           TARGET_DIR="${{ github.event.inputs.target_dir || 'site' }}"
           SITE_URL="${{ github.event.inputs.site_url || 'https://otzma-p.co.il/' }}"
           mkdir -p "$TARGET_DIR"
-          wget \
+          timeout 600 wget \
             --mirror \
             --convert-links \
             --adjust-extension \
             --page-requisites \
             --no-parent \
             --no-host-directories \
+            --level=5 \
+            --tries=2 \
+            --timeout=15 \
+            --connect-timeout=10 \
+            --dns-timeout=10 \
+            --read-timeout=20 \
+            --reject-regex='(\?|&)(replytocom|add-to-cart|orderby|s=)' \
             --directory-prefix="$TARGET_DIR" \
             --user-agent="Mozilla/5.0 (compatible; site-backup-bot)" \
             -e robots=off \
             --wait=1 \
-            "$SITE_URL"
+            "$SITE_URL" || echo "wget exited with code $? (continuing to commit whatever was downloaded)"
 
       - name: Commit and push downloaded files
         run: |
